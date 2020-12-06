@@ -1,0 +1,29 @@
+{
+  "name": "commentsserver",
+  "version": "1.0.0",
+  "description": "Node.js server that provides REST endpoints to read and write contentful data",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "contentful": "^8.0.3",
+    "contentful-management": "^7.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YannickPferr/CommentsServer.git"
+  },
+  "author": "Yannick Pferr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YannickPferr/CommentsServer/issues"
+  },
+  "homepage": "https://github.com/YannickPferr/CommentsServer#readme"
+}
