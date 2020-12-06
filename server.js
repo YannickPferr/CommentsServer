@@ -1,5 +1,7 @@
-require('dotenv').config()
+if (process.env.nodeEnv !== "AWS")
+    require('dotenv').config()
 
+const serverless = require('serverless-http');
 const express = require("express")
 const bodyParser = require("body-parser")
 const app = express()
@@ -217,6 +219,9 @@ app.get('/rating', (req, res) => {
         res.sendStatus(400)
 })
 
-app.listen(port, () => {
-    console.log(`Comment server listening at http://localhost:${port}`)
-})
+if (process.env.nodeEnv !== "AWS")
+    app.listen(port, () => {
+        console.log(`Comment server listening at http://localhost:${port}`)
+    })
+else
+    module.exports.handler = serverless(app);

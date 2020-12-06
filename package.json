@@ -9,7 +9,9 @@
     "contentful-management": "^7.4.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "serverless": "^2.15.0",
+    "serverless-http": "^2.6.0"
   },
   "devDependencies": {},
   "scripts": {
