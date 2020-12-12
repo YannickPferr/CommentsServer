@@ -20,6 +20,11 @@ const spaceId = process.env.spaceId
 const accessToken = process.env.accessToken
 const env = process.env.env
 
+const validateEmail = (email) => {
+    const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    return re.test(String(email).toLowerCase());
+}
+
 var client = contentful.createClient({
     // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
     accessToken: accessToken
@@ -30,7 +35,7 @@ app.post('/comments', (req, res) => {
     if (req.body.id && req.body.id.trim() !== ""
         && req.body.comment
         && req.body.comment.name && req.body.comment.name.trim() !== ""
-        && req.body.comment.handle && req.body.comment.handle.trim() !== ""
+        && req.body.comment.handle && req.body.comment.handle.trim() !== "" && validateEmail(req.body.comment.handle.trim())
         && req.body.comment.text && req.body.comment.text.trim() !== ""
         && req.body.comment.date && !isNaN(Date.parse(req.body.comment.date.trim()))
         && req.body.comment.replies && Array.isArray(req.body.comment.replies)) {
@@ -71,7 +76,7 @@ app.post('/rating', (req, res) => {
     if (req.body.id && req.body.id.trim() !== ""
         && req.body.rating
         && req.body.rating.name && req.body.rating.name.trim() !== ""
-        && req.body.rating.handle && req.body.rating.handle.trim() !== ""
+        && req.body.rating.handle && req.body.rating.handle.trim() !== "" && validateEmail(req.body.rating.handle.trim())
         && req.body.rating.date && !isNaN(Date.parse(req.body.rating.date.trim()))
         && req.body.rating.ratingValue && Number.isInteger(req.body.rating.ratingValue)) {
 
@@ -137,7 +142,7 @@ app.post('/replies', (req, res) => {
     if (req.body.id && req.body.id.trim() != ""
         && req.body.reply
         && req.body.reply.name && req.body.reply.name.trim() !== ""
-        && req.body.reply.handle && req.body.reply.handle.trim() !== ""
+        && req.body.reply.handle && req.body.reply.handle.trim() !== "" && validateEmail(req.body.reply.handle.trim())
         && req.body.reply.text && req.body.reply.text.trim() !== ""
         && req.body.reply.date && !isNaN(Date.parse(req.body.reply.date.trim()))) {
 
